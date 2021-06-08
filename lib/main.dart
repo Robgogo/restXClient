@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import './screens/menu_screen.dart';
+import './screens/menu/menu_screen.dart';
+import './screens/menu/menu_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
       home: MenuScreen(),
       routes: {
         MenuScreen.routeName: (ctx) => MenuScreen(),
+        MenuDetailScreen.routeName: (ctx) => MenuDetailScreen(),
       },
     );
   }

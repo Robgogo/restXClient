@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../services/auth_service.dart';
-import '../widgets/user_info_form.dart';
-import '../widgets/menu_builder.dart';
+import '../../services/auth_service.dart';
+import '../../widgets/user_info_form.dart';
+import '../../widgets/menu/menu_builder.dart';
 
 class MenuScreen extends StatelessWidget {
   static const routeName = '/menu';

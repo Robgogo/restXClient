@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../screens/menu/menu_detail_screen.dart';
+
 class MenuItem extends StatelessWidget {
+  final String id;
   final String name;
   final double price;
   final String ingredients;
   final String image;
 
   MenuItem(
+    this.id,
     this.name,
     this.price,
     this.ingredients,
@@ -17,7 +21,10 @@ class MenuItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GridTile(
       child: GestureDetector(
-        onTap: () {},
+        onTap: () {
+          Navigator.of(context)
+              .pushNamed(MenuDetailScreen.routeName, arguments: id);
+        },
         child: Image.network(
           image,
           fit: BoxFit.cover,

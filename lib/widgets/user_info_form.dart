@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../services/auth_service.dart';
-import '../screens/menu_screen.dart';
+import '../screens/menu/menu_screen.dart';
 
 class UserInfo extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import './menu_item.dart';
+import 'menu_item.dart';
 
 class MenuBuilder extends StatelessWidget {
   final String category;
@@ -32,6 +32,7 @@ class MenuBuilder extends StatelessWidget {
           ),
           children: documents.map((item) {
             return MenuItem(
+              item.id,
               item.data()['name'],
               item.data()['price'],
               item.data()['ingredients'],
