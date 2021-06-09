@@ -1,19 +1,17 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import 'menu_item.dart';
+import './menu_item.dart';
+import '../../services/menu_service.dart';
 
 class MenuBuilder extends StatelessWidget {
+  final _menuService = MenuService();
   final String category;
   MenuBuilder({this.category});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: FirebaseFirestore.instance
-          .collection("menu")
-          .where('category', isEqualTo: category)
-          .snapshots(),
+      stream: _menuService.filterByCategory(category),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(

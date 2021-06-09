@@ -6,8 +6,7 @@ import '../../widgets/menu/menu_builder.dart';
 
 class MenuScreen extends StatelessWidget {
   static const routeName = '/menu';
-  var _auth = AuthService();
-  var _userIn = false;
+  final _auth = AuthService();
   @override
   Widget build(BuildContext context) {
     var _currentUser = _auth.getCurrentUser();
@@ -32,7 +31,12 @@ class MenuScreen extends StatelessWidget {
       body: FutureBuilder(
         future: _auth.getUserData(),
         builder: (ctx, snapshot) {
-          if (!snapshot.hasData) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (!snapshot.hasData || snapshot.data.data() == null) {
             return UserInfo();
           }
 

@@ -40,7 +40,7 @@ class _UserInfoState extends State<UserInfo> {
                   if (value.isEmpty) {
                     return "Please insert your name so that we can serve you better";
                   }
-                  if (value.length < 4) {
+                  if (value.length < 2) {
                     return "Please insert a valid name!";
                   }
                   return null;

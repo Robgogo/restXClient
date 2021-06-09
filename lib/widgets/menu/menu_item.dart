@@ -22,8 +22,10 @@ class MenuItem extends StatelessWidget {
     return GridTile(
       child: GestureDetector(
         onTap: () {
-          Navigator.of(context)
-              .pushNamed(MenuDetailScreen.routeName, arguments: id);
+          Navigator.of(context).pushNamed(
+            MenuDetailScreen.routeName,
+            arguments: id,
+          );
         },
         child: Image.network(
           image,
