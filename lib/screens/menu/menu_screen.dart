@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../services/auth_service.dart';
 import '../../widgets/user_info_form.dart';
 import '../../widgets/menu/menu_builder.dart';
+import '../orders/orders_screen.dart';
 
 class MenuScreen extends StatelessWidget {
   static const routeName = '/menu';
@@ -20,11 +21,17 @@ class MenuScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            icon: Icon(Icons.exit_to_app),
+            icon: Icon(Icons.payment),
             onPressed: () {
-              _auth.signOut();
+              Navigator.of(context).pushNamed(OrdersScreen.routeName);
             },
           ),
+          // IconButton(
+          //   icon: Icon(Icons.exit_to_app),
+          //   onPressed: () {
+          //     _auth.signOut();
+          //   },
+          // ),
         ],
       ),
       backgroundColor: Colors.grey[300],

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../services/order_service.dart';
+
 class MenuItemDetail extends StatelessWidget {
+  final _orderService = OrderService();
   final String image;
   final String ingredients;
   final String name;
@@ -49,7 +52,10 @@ class MenuItemDetail extends StatelessWidget {
               Expanded(
                 child: ElevatedButton(
                   child: Text('ORDER'),
-                  onPressed: () {},
+                  onPressed: () {
+                    _orderService.addOrder(id, price, name);
+                    Navigator.of(context).pop();
+                  },
                 ),
               ),
             ],

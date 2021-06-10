@@ -1,0 +1,49 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import './auth_service.dart';
+
+class OrderService {
+  var auth = AuthService();
+  User user = AuthService().getCurrentUser();
+
+  final orderCollection = FirebaseFirestore.instance.collection("orders");
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> get streamobject {
+    return orderCollection
+        .orderBy('createdAt', descending: true)
+        .where('restId', isEqualTo: user.uid)
+        .snapshots();
+  }
+
+  Future<void> addOrder(
+    String menuId,
+    double price,
+    String name, {
+    String restId = "PVDi8NZ3d6PWWMT9UeaEObkLYpX2",
+    int tabel = 2,
+  }) async {
+    var userData = await auth.getUserData();
+    await orderCollection.add({
+      'name': name,
+      'menuId': menuId,
+      'price': price,
+      'orderedBy': userData.data()['name'],
+      'customerId': user.uid,
+      'restId': restId,
+      'table': tabel,
+      'accepted': false,
+      'served': false,
+      'paid': false,
+      'createdAt': Timestamp.now(),
+    });
+  }
+
+  Future<QuerySnapshot<Map<String, dynamic>>> getOrders() async {
+    return await orderCollection
+        .orderBy('createdAt', descending: true)
+        .where('customerId', isEqualTo: user.uid)
+        .get();
+  }
+}

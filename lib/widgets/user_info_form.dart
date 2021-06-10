@@ -18,7 +18,6 @@ class _UserInfoState extends State<UserInfo> {
     FocusScope.of(context).unfocus();
     if (isValid) {
       _formKey.currentState.save();
-      print("Saving $_name");
       await _auth.saveUserName(_name.trim());
       Navigator.of(context).pushReplacementNamed(MenuScreen.routeName);
     }
