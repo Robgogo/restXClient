@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import './auth_service.dart';
@@ -21,8 +20,8 @@ class OrderService {
     String menuId,
     double price,
     String name, {
-    String restId = "PVDi8NZ3d6PWWMT9UeaEObkLYpX2",
-    int tabel = 2,
+    String restId,
+    int table,
   }) async {
     var userData = await auth.getUserData();
     await orderCollection.add({
@@ -32,7 +31,7 @@ class OrderService {
       'orderedBy': userData.data()['name'],
       'customerId': user.uid,
       'restId': restId,
-      'table': tabel,
+      'table': table,
       'accepted': false,
       'served': false,
       'paid': false,

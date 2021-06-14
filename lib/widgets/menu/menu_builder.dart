@@ -6,12 +6,14 @@ import '../../services/menu_service.dart';
 class MenuBuilder extends StatelessWidget {
   final _menuService = MenuService();
   final String category;
-  MenuBuilder({this.category});
+  final String restId;
+  final int table;
+  MenuBuilder({this.category, this.restId, this.table});
 
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: _menuService.filterByCategory(category),
+      stream: _menuService.filterByCategory(category, restId),
       builder: (ctx, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
@@ -35,6 +37,8 @@ class MenuBuilder extends StatelessWidget {
               item.data()['price'],
               item.data()['ingredients'],
               item.data()['image'],
+              restId,
+              table,
             );
           }).toList(),
         );

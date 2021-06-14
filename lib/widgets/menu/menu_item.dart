@@ -10,6 +10,8 @@ class MenuItem extends StatelessWidget {
   final double price;
   final String ingredients;
   final String image;
+  final String restId;
+  final int table;
 
   MenuItem(
     this.id,
@@ -17,10 +19,13 @@ class MenuItem extends StatelessWidget {
     this.price,
     this.ingredients,
     this.image,
+    this.restId,
+    this.table,
   );
 
   @override
   Widget build(BuildContext context) {
+    // print(table);
     return GridTile(
       child: GestureDetector(
           onTap: () {
@@ -50,7 +55,8 @@ class MenuItem extends StatelessWidget {
             IconButton(
                 icon: Icon(Icons.add),
                 onPressed: () {
-                  _orderService.addOrder(id, price, name);
+                  _orderService.addOrder(id, price, name,
+                      restId: restId, table: table);
                   // Navigator.of(context).pop();
                 }),
           ],

@@ -16,9 +16,14 @@ class MenuService {
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> filterByCategory(
-      String category) {
+    String category,
+    String restId,
+  ) {
     // Add restId filter here also
-    return menuCollection.where('category', isEqualTo: category).snapshots();
+    return menuCollection
+        .where('category', isEqualTo: category)
+        .where('restId', isEqualTo: restId)
+        .snapshots();
   }
 
   Future<DocumentSnapshot<Map<String, dynamic>>> getMenuDetail(String id) {
