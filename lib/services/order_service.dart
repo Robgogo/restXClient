@@ -23,12 +23,10 @@ class OrderService {
     String restId,
     int table,
   }) async {
-    var userData = await auth.getUserData();
     await orderCollection.add({
       'name': name,
       'menuId': menuId,
       'price': price,
-      'orderedBy': userData.data()['name'],
       'customerId': user.uid,
       'restId': restId,
       'table': table,

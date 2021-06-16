@@ -54,68 +54,53 @@ class MenuScreen extends StatelessWidget {
               // ),
             ],
           ),
-          backgroundColor: Colors.grey[300],
-          body: FutureBuilder(
-            future: _auth.getUserData(),
-            builder: (ctx, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              }
-              if (!snapshot.hasData || snapshot.data.data() == null) {
-                return UserInfo();
-              }
-              // print(queryParams);
-
-              // var settings = ModalRoute.of(context).settings;
-              // var uriData = Uri.parse(settings.name);
-              // print(uriData);
-
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Column(
-                      children: [
-                        Center(
-                          child: Text('Starters'),
-                        ),
-                        MenuBuilder(
-                          category: 'starter',
-                          restId: restInfo['restId'],
-                          table: restInfo['table'],
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Center(
-                          child: Text('Main Dishes'),
-                        ),
-                        MenuBuilder(
-                          category: 'main dish',
-                          restId: restInfo['restId'],
-                          table: restInfo['table'],
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Center(
-                          child: Text('Deserts'),
-                        ),
-                        MenuBuilder(
-                          category: 'starter',
-                          restId: restInfo['restId'],
-                          table: restInfo['table'],
-                        ),
-                      ],
-                    ),
-                  ],
+          backgroundColor: Colors.white,
+          body: restInfo == null
+              ? Center(
+                  child: Text("Please refresh or scan the qr code again"),
+                )
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      Column(
+                        children: [
+                          Center(
+                            child: Text('Starters'),
+                          ),
+                          MenuBuilder(
+                            category: 'starter',
+                            restId: restInfo['restId'],
+                            table: restInfo['table'],
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Center(
+                            child: Text('Main Dishes'),
+                          ),
+                          MenuBuilder(
+                            category: 'main dish',
+                            restId: restInfo['restId'],
+                            table: restInfo['table'],
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Center(
+                            child: Text('Deserts'),
+                          ),
+                          MenuBuilder(
+                            category: 'starter',
+                            restId: restInfo['restId'],
+                            table: restInfo['table'],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
-              );
-            },
-          ),
         );
       },
     );

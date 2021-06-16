@@ -12,6 +12,13 @@ class MenuBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (restId.isEmpty) {
+      return Container(
+        child: Center(
+          child: Text("Please refresh or scan the qr code again"),
+        ),
+      );
+    }
     return StreamBuilder(
       stream: _menuService.filterByCategory(category, restId),
       builder: (ctx, snapshot) {

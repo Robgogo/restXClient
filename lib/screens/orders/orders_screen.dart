@@ -28,7 +28,6 @@ class OrdersScreen extends StatelessWidget {
                 OrderItem(
                   id: documents[i].id,
                   name: documents[i].data()['name'],
-                  orderedBy: documents[i].data()['orderedBy'],
                   tableId: documents[i].data()['table'],
                   accepted: documents[i].data()['accepted'],
                   served: documents[i].data()['served'],
