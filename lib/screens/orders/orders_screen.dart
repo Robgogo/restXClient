@@ -2,18 +2,52 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/orders/order_item.dart';
 import '../../services/order_service.dart';
+import '../payment/payment_screen.dart';
 
 class OrdersScreen extends StatelessWidget {
   static const routeName = '/orders';
   final _orderService = OrderService();
+
+  _showMessageDialog(BuildContext context) => showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text("Select Payment type:"),
+          content: Container(
+            width: double.infinity,
+            height: 70,
+            child: Column(
+              children: [
+                TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(PaymentScreen.routeName);
+                    },
+                    child: Text("Pay only your Orders")),
+                TextButton(
+                    onPressed: () {}, child: Text("Pay for entire table")),
+              ],
+            ),
+          ),
+        ),
+      );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Orders"),
+        actions: [
+          TextButton(
+            onPressed: () {
+              _showMessageDialog(context);
+            },
+            child: Text(
+              'Pay Now',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
+        ],
       ),
-      body: FutureBuilder(
-        future: _orderService.getOrders(),
+      body: StreamBuilder(
+        stream: _orderService.streamobject,
         builder: (ctx, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -21,6 +55,7 @@ class OrdersScreen extends StatelessWidget {
             );
           }
           final documents = snapshot.data.docs;
+          print(documents);
           return ListView.builder(
             itemCount: documents.length,
             itemBuilder: (ctx, i) => Column(

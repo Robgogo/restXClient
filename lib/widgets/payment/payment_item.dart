@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 
 import '../../services/order_service.dart';
 
-class OrderItem extends StatelessWidget {
+class PaymentItem extends StatelessWidget {
   final _orderService = OrderService();
 
   final String id;
   final String name;
   final int tableId;
-  final bool accepted;
-  final bool served;
+  final double price;
+  final bool paid;
 
-  OrderItem({
+  PaymentItem({
     this.id,
     this.name,
     this.tableId,
-    this.accepted,
-    this.served,
+    this.price,
+    this.paid,
   });
 
   @override
@@ -31,12 +31,7 @@ class OrderItem extends StatelessWidget {
         fit: BoxFit.contain,
         child: Row(
           children: [
-            Text('Status: '),
-            Text(accepted && !served
-                ? "Order accepted"
-                : served
-                    ? "Served"
-                    : "Waiting"),
+            Text("$price"),
           ],
         ),
       ),

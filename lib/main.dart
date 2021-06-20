@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import './screens/menu/menu_screen.dart';
 import './screens/menu/menu_detail_screen.dart';
 import './screens/orders/orders_screen.dart';
+import './screens/payment/payment_screen.dart';
 import './services/restaurant_service.dart';
 
 void main() {
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         MenuScreen.routeName: (ctx) => MenuScreen(),
         MenuDetailScreen.routeName: (ctx) => MenuDetailScreen(),
         OrdersScreen.routeName: (ctx) => OrdersScreen(),
+        PaymentScreen.routeName: (ctx) => PaymentScreen(),
       },
       onGenerateRoute: (settings) {
         final restService = RestaurantService();

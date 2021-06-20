@@ -12,7 +12,7 @@ class OrderService {
   Stream<QuerySnapshot<Map<String, dynamic>>> get streamobject {
     return orderCollection
         .orderBy('createdAt', descending: true)
-        .where('restId', isEqualTo: user.uid)
+        .where('customerId', isEqualTo: user.uid)
         .snapshots();
   }
 

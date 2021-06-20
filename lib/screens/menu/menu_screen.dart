@@ -54,7 +54,7 @@ class MenuScreen extends StatelessWidget {
               // ),
             ],
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.white30,
           body: restInfo == null
               ? Center(
                   child: Text("Please refresh or scan the qr code again"),
@@ -62,6 +62,18 @@ class MenuScreen extends StatelessWidget {
               : SingleChildScrollView(
                   child: Column(
                     children: [
+                      Column(
+                        children: [
+                          Center(
+                            child: Text('Drinks'),
+                          ),
+                          MenuBuilder(
+                            category: 'drink',
+                            restId: restInfo['restId'],
+                            table: restInfo['table'],
+                          ),
+                        ],
+                      ),
                       Column(
                         children: [
                           Center(
@@ -93,6 +105,18 @@ class MenuScreen extends StatelessWidget {
                           ),
                           MenuBuilder(
                             category: 'starter',
+                            restId: restInfo['restId'],
+                            table: restInfo['table'],
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Center(
+                            child: Text('Wine'),
+                          ),
+                          MenuBuilder(
+                            category: 'wine',
                             restId: restInfo['restId'],
                             table: restInfo['table'],
                           ),
