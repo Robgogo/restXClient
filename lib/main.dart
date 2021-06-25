@@ -5,6 +5,7 @@ import './screens/menu/menu_screen.dart';
 import './screens/menu/menu_detail_screen.dart';
 import './screens/orders/orders_screen.dart';
 import './screens/payment/payment_screen.dart';
+import './screens/default _screen.dart';
 import './services/restaurant_service.dart';
 
 void main() {
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
               borderRadius: BorderRadius.circular(20),
             ),
           )),
-      home: MenuScreen(),
+      home: DefaultScreen(),
       routes: {
         MenuScreen.routeName: (ctx) => MenuScreen(),
         MenuDetailScreen.routeName: (ctx) => MenuDetailScreen(),
